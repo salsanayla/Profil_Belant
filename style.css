@@ -1,0 +1,578 @@
+/* ======================================= */
+/* PALET WARNA & FONT */
+/* ======================================= */
+:root {
+    --color-primary: #0A3D62; 
+    --color-secondary: #f4f4f4;
+    --color-accent: #1c1352; 
+    --color-white: #ffffff;
+    --color-dark-text: #333333;
+    --color-light-text: #ae7373;
+}
+
+/* Mengaktifkan smooth scroll saat navigasi anchor link diklik */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ======================================= */
+/* RESET DASAR & TYPOGRAPHY */
+/* ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Times new roman;
+    line-height: 1.6;
+    background-color: #eee7e7;
+    color: var(--color-dark-text);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s;
+}
+
+
+#home { 
+    background: linear-gradient(
+        rgba(11, 55, 91, 0.7), /* Overlay biru tua transparan */
+        rgba(11, 55, 91, 0.7)
+    ), 
+    url('belant.jpg'); 
+    
+    background-size: 80% auto;
+    background-position: center;
+    min-height: 400px; /* Tinggi minimum agar gambar terlihat */
+    
+    /* Agar teks berada di tengah area */
+    text-align: center;
+    padding: 60px 5%;
+}
+
+/* Mengatur agar semua teks di dalam section profil berwarna putih */
+#home h2, 
+#home p {
+    color: var(--color-white); 
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+h2 {
+    font-size: 2em;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Asumsi teks deskripsi adalah tag <p> */
+section p {
+    /* Ini akan menargetkan semua paragraf di dalam tag <section> */
+    
+    /* Tambahkan jarak bawah (margin-bottom) untuk mendorong kotak-kotak produk */
+    margin-bottom: 25px; /* <--- COBA NILAI INI, sesuaikan sesuai kebutuhan */
+}
+
+section {
+    padding: 60px 5%; /* Padding horizontal dan vertikal */
+}
+
+/* ======================================= */
+/* HEADER & NAVIGASI */
+/* ======================================= */
+header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--color-accent);
+    position: sticky; /* Sticky Navbar */
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 45px; /* Sesuaikan ukuran logo */
+    margin-right: 20px;
+    filter: brightness(0) invert(1); /* Membuat logo putih jika aslinya berwarna gelap */
+}
+
+.logo h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.logo p {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    padding-left: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--color-white);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.5s, border-bottom 0.5s;
+}
+
+nav ul li a:hover {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* ======================================= */
+/* SECTION: HOME/HERO */
+/* ======================================= */
+.hero {
+    background-color: var(--color-primary);
+    color: var(--color-primary);
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Menggunakan gradien radial sederhana sebagai placeholder untuk pola */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(229, 210, 186, 0.4) 0%, rgba(132, 197, 243, 0) 60%),
+        radial-gradient(circle at 90% 80%, rgba(229, 210, 186, 0.4) 0%, rgba(11, 57, 90, 0) 60%);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.hero h2, .hero p {
+    position: relative;
+    z-index: 1;
+    color: var(--color-secondary);
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ======================================= */
+/* SECTION: SERVICES & PRODUCTS (GRID LAYOUT) */
+/* ======================================= */
+#services {
+    background-color: var(--color-primary);
+}
+
+#product {
+    background-color: var(--color-primary);
+}
+
+.service-container, .product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.service-box, .product-box {
+    background: var(--color-white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(147, 136, 136, 0.1);
+    transition: transform 0.3s;
+    text-align: center;
+    min-height: 180px; /* Menjaga tinggi konsisten */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-box:hover, .product-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-box h3 {
+    font-size: 1.1em;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 5px;
+}
+
+.product-box h3 {
+    font-size: 1.1em;
+    color: var(--color-primary); 
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.product-box p {
+    font-size: 0.9em;
+}
+
+/* ======================================= */
+/* SECTION: VISI & MISI */
+/* ======================================= */
+#visimisi {
+    background-color: var(--color-white);
+}
+
+.vm-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.visi, .misi {
+    flex: 1;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.visi {
+    border-left: 5px solid var(--color-primary);
+}
+
+.misi {
+    border-left: 5px solid var(--color-accent);
+}
+
+.visi h3, .misi h3 {
+    font-size: 1.3em;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.misi ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 1em;
+}
+
+.misi ul li {
+    margin-bottom: 8px;
+}
+
+/* ======================================= */
+/* SECTION: KONTAK & LOKASI */
+/* ======================================= */
+#kontak, #lokasi {
+    text-align: center;
+    background-color: var(--color-secondary);
+    padding-bottom: 30px; /* Sesuaikan jika perlu */
+}
+
+#kontak h2 {
+    color: var(--color-primary);
+}
+
+#kontak p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Menjaga ikon dan teks sejajar di tengah */
+#kontak p {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Untuk menengahkan semua elemen dalam paragraf */
+}
+
+/*
+ *******************************************************
+ * STYLING KHUSUS DETAIL KONTAK & PETA
+ *******************************************************
+ */
+
+/* 1. Styling untuk div yang menampung detail kontak (Email, Telp, Jam Kerja) */
+/* Asumsikan Anda membungkus detail ini dengan <div class="contact-details"> */
+.contact-details {
+    max-width: 450px;
+    margin: 0 auto 50px auto; /* Tengahkan dan beri jarak dari peta */
+    padding: 20px;
+    background-color: var(--color-white); /* Kotak kontak putih */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+/* 2. Styling Area Lokasi/Peta */
+/* Asumsikan peta dibungkus oleh <div class="map-container"> */
+.map-container {
+    max-width: 1000px;
+    height: 400px; /* Tinggi peta */
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Pastikan Peta (iframe) memenuhi container */
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* Memberi jarak antara ikon dan teksnya */
+.icon-spacing {
+    margin-right: 10px; /* Memberi jarak 10px ke kanan */
+    font-size: 1em;   /* Membuat ukuran ikon sedikit lebih besar dari teks */
+    /* Opsional: Tentukan warna ikon */
+    /* color: blue; */ 
+}
+
+#lokasi h3 {
+    font-size: 1.5em;
+    color: var(--color-primary);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#lokasi p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 1.1em;
+}
+
+/* ======================================= */
+/* FOOTER */
+/* ======================================= */
+footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+    padding: 15px 5%;
+    font-size: 0.9em;
+}
+
+/* ======================================= */
+/* RESPONSIVENESS */
+/* ======================================= */
+@media (max-width: 992px) {
+    .vm-container {
+        flex-direction: column;
+    }
+
+    .visi, .misi {
+        margin-bottom: 20px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+}
+
+/*
+ *******************************************************
+ * STYLING UNTUK SECTION LAYANAN BISNIS (BUSINESS SERVICES)
+ *******************************************************
+ */
+
+/* Asumsi: section utama layanan memiliki class .services-section */
+.services-section {
+    /* Menggunakan gradien halus untuk latar belakang */
+    background: linear-gradient(to bottom, #f7f7f7, #ffffff); 
+    padding: 60px 0; 
+}
+
+/* Styling Judul Utama */
+.services-section h2 {
+    color: var(--color-primary); 
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Styling Kotak Layanan */
+.service-box-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Atur 3 kolom layanan */
+    gap: 30px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.service-box {
+    background-color: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Untuk efek hover */
+}
+
+/* Efek saat kursor diarahkan */
+.service-box:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling Ikon dan Judul Layanan */
+.service-box i {
+    color: var(--color-accent); /* Gunakan warna aksen Anda */
+    font-size: 2.2em;
+    margin-bottom: 15px;
+}
+
+.service-box h3 {
+    color: var(--color-dark-text);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/*
+ *******************************************************
+ * STYLING UNTUK SECTION PRODUK BISNIS
+ *******************************************************
+ */
+
+/* Asumsikan section utama produk memiliki class .products-section */
+.products-section {
+    /* Menggunakan warna abu-abu terang (secondary color) */
+    background-color: var(--color-secondary); 
+    padding: 80px 0; /* Memberi jarak di atas dan bawah */
+}
+
+.products-section h2 {
+    color: var(--color-dark-text); 
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Container untuk mengatur grid/layout produk */
+.product-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Styling Kotak Produk */
+.product-box {
+    background-color: var(--color-white); 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 30px;
+    text-align: center;
+    
+    /* Efek interaktif */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Efek saat kursor diarahkan */
+.product-box:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling Ikon dan Judul Produk */
+.product-box i {
+    color: var(--color-accent); 
+    font-size: 2.2em; /* Ukuran ikon sedang */
+    margin-bottom: 15px;
+}
+
+.product-box h3 {
+    color: var(--color-primary);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.header-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ====== ANIMASI HEADER ====== */
+.header-title {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeSlide 1.2s ease-out forwards;
+}
+
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visi,
+.misi {
+    transition: 0.3s ease-in-out;
+}
+
+.visi:hover,
+.misi:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
